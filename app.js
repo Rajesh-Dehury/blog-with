@@ -3,6 +3,7 @@ var methodOverride =require("method-override");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var app = express();
+var port = process.env.PORT || 8080;
 
 
 // APP CONFIG
@@ -109,7 +110,7 @@ app.delete("/blogs/:id",function(req,res){
 })
 
 
-app.listen(process.env.PORT,process.env.IP,function(){
+app.listen(port,function(){
     console.log("Server is started....");
 })
 
