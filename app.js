@@ -1,5 +1,6 @@
 var express =require("express");
 var methodOverride =require("method-override");
+var expressSanitizer = require("express-sanitizer");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var app = express();
@@ -11,6 +12,7 @@ mongoose.connect("mongodb+srv://rajesh:rajaraja@cluster0-nx9xd.mongodb.net/restf
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 
@@ -53,6 +55,7 @@ app.get("/blogs/new",function(req,res){
 //create rout
 app.post("/blogs",function(req,res){
     // create blog
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog,function(err,newBlog){
         if(err){
             console.log(err);
@@ -113,4 +116,9 @@ app.delete("/blogs/:id",function(req,res){
 app.listen(port,function(){
     console.log("Server is started....");
 })
+
+
+// app.listen(8080,function(){
+//     console.log("Server is started....");
+// })
 

@@ -1,15 +1,16 @@
 <%- include("./partials/header")%>
 
-<h1>INDEX PAGE</h1>
-<div class="ui four column doubling stackable grid container">
-<% blogs.forEach(function(blog){ %>
-    <div class="ui items">
-        <div class="item">
+<div class="ui main text container">
+  <div class="ui huge header">Blog App</div>
+  <div class="ui top attached segment">
+    <div class="ui divided items">
+      <% blogs.forEach(function(blog){ %>
+        <div class="item">  
           <div class="image">
-            <img class="ui medium circular image" src="<%= blog.image %>">
-          </div>
+            <img class="" src="<%= blog.image %>">
+          </div>     
           <div class="content">
-            <a class="header"><%= blog.title %></a>
+            <a class="header" href="/blogs/<%= blog._id %>"><%= blog.title %></a>
             <div class="meta">
               <span><%= blog.created.toDateString() %></span>
             </div>
@@ -17,11 +18,13 @@
               <p><%- blog.body.substring(0,150) %>...</p>
             </div>
             <div class="extra">
-                <a href="/blogs/<%= blog._id %>" class="ui pink inverted button">Read more</a>
+              <a href="/blogs/<%= blog._id %>" class="ui floated pink inverted button">Read more</a>
             </div>
-          </div>
-        </div>    
-<% }) %>    
+          </div>            
+        </div>
+      <% }) %>   
+    </div>
+  </div>
 </div>
 
 <%- include("./partials/footer")%>
