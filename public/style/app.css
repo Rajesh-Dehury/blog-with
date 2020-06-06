@@ -8,3 +8,8 @@ i.icon{
 #del{
     display: inline;
 }
+
+h3 span{
+    color: blue;
+    padding-top: 10px;
+}
